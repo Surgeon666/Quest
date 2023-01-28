@@ -14,7 +14,8 @@ public class Main {
         a = sc.nextInt();
         if (a == 1) {
             One1();
-        } else if (a == 2) System.out.println("Тогда пока ;)");
+        } else if (a == 2){ System.out.println("Тогда пока ;)");
+            System.exit(0);}
         else System.out.println("Введенно неккоректное значение. Введите 1 или 2");
         if (a == 1) a = sc.nextInt();
         if (a == 1 || a == 2) {
@@ -66,7 +67,7 @@ public class Main {
             fd -= 1;
         }
         else if (a == 2){
-            System.out.println("Спустя минуту звуки прекратились и вы снова остались в полной тишине");
+            System.out.println("Спустя минуту звуки прекратились, и вы снова остались в полной тишине");
             fd -= 1;
         }
     }
@@ -80,7 +81,7 @@ public class Main {
             System.out.println("Увидев вас, человек бросился в вашу сторону с диким рёвом!");
             if (dm == 2.5){
                 System.out.println("Вы не придумали ничего лучше, чем защищаться арматурой!");
-                System.out.println("С размаху ударив неизвестного вы поспешили вернуться в здание");
+                System.out.println("С размаху ударив неизвестного, вы поспешили вернуться в здание");
                 hp += 1;
                 fd -= 1;
                 Four1();
@@ -99,7 +100,7 @@ public class Main {
         }
     }
     public static void Three3(){//остался в здании
-        System.out.println("В течении пяти минут ничего не произошло.");
+        System.out.println("Втечение пяти минут ничего не произошло.");
         System.out.println("Вы решили исследовать здание.");
         System.out.println("1. Подняться наверх.");
         System.out.println("2. Исследовать дверной проём на первом этаже.");
@@ -120,14 +121,14 @@ public class Main {
             Four4();
         }
         else if(a == 2){
-            System.out.println("В проёме находился спуск вниз, который оканчивался деревянной дверью.");
+            System.out.println("В проёме находится спуск вниз, который оканчивается деревянной дверью.");
             System.out.println("Попытки толкнуть дверь ни к чему не привели.");
             fd -= 1;
             Four3();
         }
     }
     public static void Four1(){
-        System.out.println("Зайдя в здание вы останавливаетесь и решаете подумать.");
+        System.out.println("Зайдя в здание, вы останавливаетесь и решаете подумать.");
         System.out.println("Стоит аккуратно посмотреть, что там на улице или убираться отсюда?");
         System.out.println("1. Поискать другой выход на первом этаже.");
         System.out.println("2. Аккуратно посмотреть, что там с нападавшим.");
@@ -167,7 +168,7 @@ public class Main {
         }
     }
     public static void Four3() {
-        System.out.println("Скрепя зубами, вы остаётесь в замешательстве.");
+        System.out.println("Скрипя зубами, вы остаётесь в замешательстве.");
         System.out.println("1. Попробовать вскрыть дверь.");
         System.out.println("2. Вернуться обратно.");
         a = sc.nextInt();
@@ -179,10 +180,16 @@ public class Main {
             }
             else if (dm < 2.5){
                 int x = (int) (Math.random() * 100);
-                if (x >= 20) {
+                if (x >= 10) {
                     System.out.println("Спустя несколько минут упорного труда, вы проделываете в двери большое отверстие.");
                     System.out.println("Несмотря на боль в мышцах, вы уверенно проходите дальше.");
                     fd -= 2;
+                    hp -= 1;
+                }
+                else if (x< 20){
+                    System.out.println("Вы колотили дверь руками и ногами, но она не поддавалась.");
+                    System.out.println("Расстроившись, вы вернулись обратно.");
+                    
                 }
                 }
             }
