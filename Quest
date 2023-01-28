@@ -1,0 +1,230 @@
+import java.util.Scanner;
+public class Main {
+    static int a = 0;
+    static double hp = 70;
+    static double dm = 0.9;
+    static double fd = 45;
+    static int bag = 3;
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        System.out.println("Приветствую");
+        System.out.println("Начнём игру?");
+        System.out.println("1. Да");
+        System.out.println("2. Нет");
+        a = sc.nextInt();
+        if (a == 1) {
+            One1();
+        } else if (a == 2) System.out.println("Тогда пока ;)");
+        else System.out.println("Введенно неккоректное значение. Введите 1 или 2");
+        if (a == 1) a = sc.nextInt();
+        if (a == 1 || a == 2) {
+            Two1();
+        } else System.exit(0);
+        if (a == 1 || a == 2) {
+            System.out.println("С улицы доносятся какие-то звуки. Может, стоит проверить?");
+            Three1();
+        }
+        else System.exit(0);
+        if (a == 1) Three2();
+        else if (a == 2) Three3();
+        else System.exit(0);
+    }
+    public static void One1() {
+        System.out.println("Вы очнулись в пустой заброшенной комнате. Голова невыносимо болит, вам хочется пить.");
+        System.out.println("1. Осмотреть себя.");
+        System.out.println("2. Осмотреть комнату.");
+    }
+    public static void Two1() {
+        if (a == 1) {
+            int x = (int) (Math.random() * 10);
+            if (x >= 2) {
+                System.out.println("Вы нашли половину плитки шоколада, а также немного мусора.");
+                fd += 10;
+                hp += 2;
+            } else System.out.println("Вы ничего не нашли.");
+        } else if (a == 2) {
+            int x = (int) (Math.random() * 10);
+            if (x >= 5) {
+                System.out.println("Вы нашли кусок ржавой арматуры. Может пригодиться.");
+                dm = 2.5;
+                fd -= 1;
+                bag -= 1;
+            } else {
+                System.out.println("К сожалению, вы ничего не нашли.");
+            }
+            fd -= 1;
+        }
+    }
+    public static void Three1() {
+        System.out.println("1. Да, возможно там что-то интересное.");
+        System.out.println("2. Нет, неизвестно где я и что со мной случилось, там может быть опасность.");
+        a = sc.nextInt();
+        if (a == 1) {
+            System.out.println("На улице сыро и прохладно.");
+            System.out.println("В паре десятков метров от вас вы заметили человека, стоящего в странной позе.");
+            System.out.println("Судя по всему, он вас не заметил.");
+            fd -= 1;
+        }
+        else if (a == 2){
+            System.out.println("Спустя минуту звуки прекратились и вы снова остались в полной тишине");
+            fd -= 1;
+        }
+    }
+    public static void Three2(){
+        System.out.println("Этот человек выглядит подозрительно... может не стоит его тревожить?");
+        System.out.println("1. Нет, надо разобраться с тем, где я.");
+        System.out.println("2. Думаю, стоит вернуться обратно.");
+        a = sc.nextInt();
+        if (a == 1){
+            System.out.println("Вы подошли к неизвестному и попытались завести с ним диалог.");
+            System.out.println("Увидев вас, человек бросился в вашу сторону с диким рёвом!");
+            if (dm == 2.5){
+                System.out.println("Вы не придумали ничего лучше, чем защищаться арматурой!");
+                System.out.println("С размаху ударив неизвестного вы поспешили вернуться в здание");
+                hp += 1;
+                fd -= 1;
+                Four1();
+            }
+            else if (dm < 2.5){
+                System.out.println("Вы в страхе разворачиваетесь и начинаете убегать от обезумевшего!");
+                System.out.println("Спустя несколько долгих мгновений вы влетаете в здание.");
+                fd -= 3;
+                Four2();
+            }
+        }
+        else if (a == 2){
+            System.out.println("Стараясь не издавать лишнего шума, вы возвращетесь в здание.");
+            System.out.println("Вы снова одни в полной тишине.");
+            fd -= 1;
+        }
+    }
+    public static void Three3(){//остался в здании
+        System.out.println("В течении пяти минут ничего не произошло.");
+        System.out.println("Вы решили исследовать здание.");
+        System.out.println("1. Подняться наверх.");
+        System.out.println("2. Исследовать дверной проём на первом этаже.");
+        a = sc.nextInt();
+        if (a == 1){
+            int x = (int) (Math.random() * 100);
+            if (x >= 50){
+                System.out.println("Среди груд мусора вы нашли почти полностью пустой рюкзак.");
+                System.out.println("Внутри вы обнаружили запакованную бутылку воды 0,5 л.");
+                bag +=10;
+                fd += 3;
+                hp += 1;
+            }
+            else {
+                System.out.println("Вы потратили десять минут на поиски, но кроме мусора ничего не нашли.");
+                fd -= 2;
+            }
+            Four4();
+        }
+        else if(a == 2){
+            System.out.println("В проёме находился спуск вниз, который оканчивался деревянной дверью.");
+            System.out.println("Попытки толкнуть дверь ни к чему не привели.");
+            fd -= 1;
+            Four3();
+        }
+    }
+    public static void Four1(){
+        System.out.println("Зайдя в здание вы останавливаетесь и решаете подумать.");
+        System.out.println("Стоит аккуратно посмотреть, что там на улице или убираться отсюда?");
+        System.out.println("1. Поискать другой выход на первом этаже.");
+        System.out.println("2. Аккуратно посмотреть, что там с нападавшим.");
+        a = sc.nextInt();
+        if (a == 1){
+            int x = (int) (Math.random() * 100);
+            if (x >= 10) {
+                System.out.println("Вы смогли найти другой выход на улицу, наверняка он планировался как запасной.");
+              fd -= 1;
+            }
+           else {
+                System.out.println("К сожалению, других выходов вы не нашли и решили вернуться к месту, где очнулись.");
+               fd -= 1;
+            }
+        }
+    }
+    public static void Four2(){
+        System.out.println("Ваше сердце бешенно колотится, вы тяжело дышите.");
+        System.out.println("Надо скорее куда-то уйти!");
+        System.out.println("1. Бежать на второй этаж.");
+        System.out.println("2. Бежать к подвалу.");
+        a = sc.nextInt();
+        if (a == 1){
+           int x = (int) (Math.random() * 100);
+           if (x >= 70) {
+               System.out.println("Всё ещё запыхиваясь, вы забегаете на второй этаж и слышите за собой быстрые шаги!");
+               System.out.println("Надо торопиться!");
+               fd -= 1;
+           }
+           else if (x < 70) {
+               System.out.println("Поднимаясь по лестнице, вы зацепляетесь ногой за ступеньку и падаете на голый бетон.");
+               System.out.println("По телу разливается жгучая боль, но медлить нельзя!");
+               System.out.println("Собрав силы в кулак, вы продолжаете убегать!");
+               fd -= 1;
+               hp -= 3;
+           }
+        }
+    }
+    public static void Four3() {
+        System.out.println("Скрепя зубами, вы остаётесь в замешательстве.");
+        System.out.println("1. Попробовать вскрыть дверь.");
+        System.out.println("2. Вернуться обратно.");
+        a = sc.nextInt();
+        if (a == 1){
+            if (dm == 2.5){
+                System.out.println("С помощью арматуры старое дерево удалось разбить в два счёта.");
+                System.out.println("Держа в руках своё оружие, вы уверенно проходите вперёд.");
+                fd -= 1;
+            }
+            else if (dm < 2.5){
+                int x = (int) (Math.random() * 100);
+                if (x >= 20) {
+                    System.out.println("Спустя несколько минут упорного труда, вы проделываете в двери большое отверстие.");
+                    System.out.println("Несмотря на боль в мышцах, вы уверенно проходите дальше.");
+                    fd -= 2;
+                }
+                }
+            }
+        }
+    public static void Four4(){
+        System.out.println("Вы можете спуститься вниз или подойти к оконному проёму и осмотреть окрестности.");
+        System.out.println("1. Спуститься");
+        System.out.println("2. Осмотреть окрестности.");
+        a = sc.nextInt();
+        if (a == 1) Five1();
+        else if (a == 2) Five2();
+    }
+    public static void Five1(){
+        System.out.println("Спустившись вниз, вы замечаете фигуру в дверном проёме.");
+        System.out.println("1. Притаиться.");
+        System.out.println("2. Аккуратно спуститься вниз");
+        a = sc.nextInt();
+        if (a == 1) Six1();
+        else if (a == 2) Six2();
+    }
+    public static void Five2(){
+        System.out.println("Их окна на вас дует медленный прохладный ветер.");
+        System.out.println("На улице тёплое время года; всюду растут зелёные деревья и кустарники.");
+        System.out.println("В поле вашего зрения есть только лес и ничего более.");
+        System.out.println("Постояв около 30 секунд, вы не обнаруживаете ничего примечательного, кроме еле видной тропинки.");
+        System.out.println("1. Постоять ещё.");
+        System.out.println("2. Ещё раз осмотреть второй этаж.");
+        a = sc.nextInt();
+        if (a == 1) Six3();
+        else if (a == 2) Six4();
+
+    }
+    public static void Six1(){
+
+    }
+    public static void Six2(){
+
+    }
+    public static void Six3(){
+
+    }
+    public static void Six4(){
+
+    }
+    }
